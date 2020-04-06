@@ -25,9 +25,23 @@ namespace WebApplication.Controllers
         }
 
         // GET: Transaction/Create
-        public IActionResult Create()
+        public async Task<IActionResult> AddOrEdit(int id = 0)
         {
-            return View();
+            if(id == 0)
+            {
+                return View(new TransactionModel());
+            }
+            else
+            {
+                var transactionModel = await _context.Transactions.FindAsync(id);
+                if (transactionModel == null)
+                {
+                    return NotFound();
+                }
+                return View(transactionModel);
+            }
+
+            
         }
 
         // POST: Transaction/Create
