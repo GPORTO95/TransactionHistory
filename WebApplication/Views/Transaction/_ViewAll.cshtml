@@ -38,7 +38,10 @@
                     @*<a asp-action="Edit" asp-route-id="@item.TransactionId">Edit</a> |*@
                     <a onclick="showInPopup('@Url.Action("AddOrEdit", "Transaction", new { id = item.TransactionId}, Context.Request.Scheme)', 'Update Transaction')" class="btn btn-link btn-sm"><i class="fas fa-pencil-alt"></i> Edit </a>
                     |
-                    <a asp-action="Delete" asp-route-id="@item.TransactionId">Delete</a>
+                    @*<a asp-action="Delete" asp-route-id="@item.TransactionId">Delete</a>*@
+                    <form asp-action="Delete" asp-route-id="@item.TransactionId" onsubmit="return jQueryAjaxDelete(this);" class="d-inline">
+                        <input type="submit" value="Delete" class="btn btn-sm btn-link"/>
+                    </form>
                 </td>
             </tr>
         }

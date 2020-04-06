@@ -44,4 +44,29 @@ jQueryAjaxPost = form => {
 
     //to prevent default form submit event
     return false;
-}
+};
+
+jQueryAjaxDelete = form => {
+    if (confirm('Are you sure to delete this record?')) {
+        try {
+            $.ajax({
+                type: "POST",
+                url: form.action,
+                data: new FormData(form),
+                contentType: false,
+                processData: false,
+                success: function (res) {
+                    $("#view-all").html(res.html);
+                },
+                error: function (err) {
+                    console.log(e);
+                }
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    //to prevent default form submit event
+    return false;
+};
