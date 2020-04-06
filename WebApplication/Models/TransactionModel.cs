@@ -24,5 +24,6 @@ namespace WebApplication.Models
         [Column(TypeName = "nvarchar(11)")]
         public string SWIFTCod { get; set; }
         public int Amount { get; set; }
+        public DateTime Date { get; set; }
     }
 }

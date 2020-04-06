@@ -24,24 +24,6 @@ namespace WebApplication.Controllers
             return View(await _context.Transactions.ToListAsync());
         }
 
-        // GET: Transaction/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var transactionModel = await _context.Transactions
-                .FirstOrDefaultAsync(m => m.TransactionId == id);
-            if (transactionModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(transactionModel);
-        }
-
         // GET: Transaction/Create
         public IActionResult Create()
         {
