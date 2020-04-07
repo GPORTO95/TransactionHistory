@@ -13,6 +13,7 @@ $(function () {
     });
 });
 
+// #Open modal Add or Edit Transaction
 showInPopup = (url, title) => {
     $.ajax({
         type: "GET",
@@ -25,6 +26,24 @@ showInPopup = (url, title) => {
     });
 };
 
+// #Open Toast notifycation
+showInToast = (icon, title) => {
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true
+    });
+
+    Toast.fire({
+        icon: icon,
+        title: title
+    });
+};
+
+// #Requisition Ajax Post form
 jQueryAjaxPost = form => {
 
     try {
@@ -40,6 +59,9 @@ jQueryAjaxPost = form => {
                     $("#form-modal .modal-body").html('');
                     $("#form-modal .modal-title").html('');
                     $("#form-modal").modal('hide');
+
+                    showInToast('success','submitted successfully');
+
                 } else {
                     $("#form-modal .modal-body").html(res.html);
                 }
@@ -56,6 +78,7 @@ jQueryAjaxPost = form => {
     return false;
 };
 
+// #Requisition Ajax Post Delete
 jQueryAjaxDelete = form => {
     if (confirm('Are you sure to delete this record?')) {
         try {
@@ -67,6 +90,7 @@ jQueryAjaxDelete = form => {
                 processData: false,
                 success: function (res) {
                     $("#view-all").html(res.html);
+                    showInToast('success', 'delete successfully');
                 },
                 error: function (err) {
                     console.log(e);
