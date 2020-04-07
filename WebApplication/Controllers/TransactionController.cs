@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApplication.Models;
+using static WebApplication.Helper;
 
 namespace WebApplication.Controllers
 {
@@ -25,6 +26,7 @@ namespace WebApplication.Controllers
         }
 
         // GET: Transaction/Create
+        [NoDirectAccess]
         public async Task<IActionResult> AddOrEdit(int id = 0)
         {
             if(id == 0)
